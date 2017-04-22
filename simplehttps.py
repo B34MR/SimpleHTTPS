@@ -29,7 +29,7 @@ def cls():
 # Banner
 def banner():
   banner = colors.red + '\n' + App + Version \
-  + colors.normal + '\n Description: Quick and dirty HTTPS for Pentesters.' + '\n'\
+  + colors.normal + '\n Description: Quick and dirty HTTPS Python Server.' + '\n'\
   + colors.normal + ' Created by: ' + Author + '\n'\
   + colors.normal + ' ' + '*' * 79 +'\n' + colors.normal
   print(banner)

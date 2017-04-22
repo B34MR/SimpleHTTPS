@@ -59,13 +59,20 @@ def parse_args():
 	return args
 
 def serverHTTPS(server, port):
-	os.system('openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365')
+	directory = 'var/www/'
+	if not os.path.exists(directory):
+		os.makedirs(directory)
+	os.chdir('var/www/')
+
+	os.system('openssl req -x509 -newkey rsa:2048 -keyout ../../key.pem -out ../../cert.pem -days 365')
 	httpd = BaseHTTPServer.HTTPServer((server, port),
 	        SimpleHTTPServer.SimpleHTTPRequestHandler)	
 	httpd.socket = ssl.wrap_socket (httpd.socket,
-	        keyfile='key.pem',
-	        certfile='cert.pem', server_side=True)	
+	        keyfile='../../key.pem',
+	        certfile='../../cert.pem', server_side=True)	
 	httpd.serve_forever()
+	# raw_input('Press Enter to Terminate Server')
+	# sys.exit(1)
 
 def main():
 	args = parse_args()

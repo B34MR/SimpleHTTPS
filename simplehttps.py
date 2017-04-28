@@ -46,39 +46,64 @@ def parse_args():
 	# Create Parser
 	parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter, description=' '+
 		str(banner()), usage=msg)	
-	# Positional Arguments
+	# Server Argument Group
 	server_group = parser.add_argument_group(colors.green + 'Server options' + colors.normal)
-	
-	server_group.add_argument('-s','--server', type=str, metavar='Server [127.0.0.1]', required=True,
-		help='Define HTTP Server IP ex: -s 127.0.0.1')
-
-	server_group.add_argument('-p','--port', type=int, metavar='Port [443]', nargs='?', const=1, default = 443, required=True,
-		help='Define HTTP Server Port ex: -p 443')
+	server_group.add_argument('-s','--server', type=str, metavar='Default [127.0.0.1]', default='127.0.0.1',
+		help='')
+	server_group.add_argument('-p','--port', type=int, metavar='Default [443]', nargs='?', const=1, default = 443,
+		help='')
+	# SSL Cert Argument Group
+	SSLCert_group = parser.add_argument_group(colors.green + 'SSL Cert options' + colors.normal)
+	SSLCert_group.add_argument('-cn','--country', type=str, metavar='Default [US]', default='US',
+		help='')
+	SSLCert_group.add_argument('-st','--state', type=str, metavar='Default [DEL]', default = 'DEL',
+		help='')
+	SSLCert_group.add_argument('-c','--city', type=str, metavar='Default [DOVER]', default = 'DOVER',
+		help='')	
+	SSLCert_group.add_argument('-comp','--company', type=str, metavar='Default [Company Inc]', default = 'Company Inc',
+		help='')
+	SSLCert_group.add_argument('-ou','--orgUnit', type=str, metavar='Default [IT]', default = 'IT',
+		help='')
+	SSLCert_group.add_argument('-d', '--fqdn', type=str, metavar='Default [www.myserver.com]', default = 'www.myserver.com',
+		help='')
+	SSLCert_group.add_argument('-e','--email', type=str, metavar='Default [it@support.com]', default = 'it@support.com',
+		help='')
 	# Parse/Return the Arguments
 	args = parser.parse_args()
 	return args
+
+def sslCert(country, state, city, company, orgUnit, fqdn, email):
+	cert = """openssl \
+	req \
+    -nodes \
+    -x509\
+    -newkey rsa:2048 \
+    -keyout ../../key.pem \
+    -out ../../cert.pem \
+    -days 365\
+    -subj "/C={0}/ST={1}/L={2}/O={3}/OU={4}/CN={5}/emailAddress={6}"
+	"""
+	createCert = cert.format(country, state, city, company, orgUnit, fqdn, email)
+	print(createCert)
+	os.system(createCert)
+	print(blue('i') + 'SSL Certificate Created:')
 
 def serverHTTPS(server, port):
 	directory = 'var/www/'
 	if not os.path.exists(directory):
 		os.makedirs(directory)
 	os.chdir('var/www/')
-
-	os.system('openssl req -x509 -newkey rsa:2048 -keyout ../../key.pem -out ../../cert.pem -days 365')
+	# Create SSL Cert
+	sslCert(args.country, args.state, args.city, args.company, args.orgUnit, args.fqdn, args.email)
+	# Start HTTPS Server
 	httpd = BaseHTTPServer.HTTPServer((server, port),
 	        SimpleHTTPServer.SimpleHTTPRequestHandler)	
 	httpd.socket = ssl.wrap_socket (httpd.socket,
 	        keyfile='../../key.pem',
-	        certfile='../../cert.pem', server_side=True)	
+	        certfile='../../cert.pem', server_side=True)
+	print(blue('i') + 'HTTPS Server Started: ' + 'https://' + args.server + ':'+ str(args.port))
 	httpd.serve_forever()
-	# raw_input('Press Enter to Terminate Server')
-	# sys.exit(1)
-
-def main():
-	args = parse_args()
-	server = args.server
-	port = args.port
-	serverHTTPS(server, port)
 
 if __name__ == '__main__':
-	main()
+	args = parse_args()
+	serverHTTPS(args.server, args.port)

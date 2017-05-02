@@ -7,6 +7,8 @@
      2. Set up a new PEM password, enter Country Name, State, etc ..
      
      3. Enter your previous PEM password to start HTTPS server.
+     
+     Note: HTTPS server runs in SimpleHTTPS/var/www/
 
      Example:
          SimpleHTTPS v1.05012017

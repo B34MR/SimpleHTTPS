@@ -12,7 +12,7 @@
 
      Example:
          SimpleHTTPS v1.05012017
-         Description: Quick and dirty HTTPS for Pentesters.
+         Description: Quick and dirty HTTPS Python Server.
          Created by: Nick Sanzotta/@Beamr
          *******************************************************************************
 

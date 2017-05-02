@@ -1,5 +1,5 @@
 # SimpleHTTPS
-    Quick and dirty HTTPS Server for Pentesters.
+    Quick and dirty HTTPS Python Server.
 
 # Usage:
      1. python simplehttps.py --server 127.0.0.1 --port 443

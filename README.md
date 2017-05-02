@@ -2,15 +2,19 @@
     Quick and dirty HTTPS Python Server.
 
 # Usage:
-     1. python simplehttps.py --server 127.0.0.1 --port 443
+     1. Define server IP Address and Port
+        python simplehttps.py --server 127.0.0.1 --port 443
    
-     2. Set up a new PEM password, enter Country Name, State, etc ..
+     2. Create Self Signed Cert
+        Set up a new PEM password, enter Country Name, State, etc ..
      
-     3. Enter your previous PEM password to start HTTPS server.
+     3. Start HTTPS Server
+        Enter your previous PEM password to start HTTPS server.
      
      Note: HTTPS server runs in SimpleHTTPS/var/www/
 
-     Example:
+
+    Example:
          SimpleHTTPS v1.05012017
          Description: Quick and dirty HTTPS Python Server.
          Created by: Nick Sanzotta/@Beamr

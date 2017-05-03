@@ -19,26 +19,33 @@
          Description: Quick and dirty HTTPS Python Server.
          Created by: Nick Sanzotta/@Beamr
          *******************************************************************************
-
+         openssl req -nodes -x509 -newkey rsa:2048 -keyout ../../key.pem -out ../../cert.pem -days 365 -subj                            "/C=US/ST=DEL/L=DOVER/O=Company Inc/OU=IT/CN=www.test.com/emailAddress=it@support.com"
+         
          Generating a 2048 bit RSA private key
-         ........+++
-         ...............+++
+         .......+++
+         ........................................+++
          writing new private key to '../../key.pem'
-         Enter PEM pass phrase:
-         Verifying - Enter PEM pass phrase:
-         -----
-         You are about to be asked to enter information that will be incorporated
-         into your certificate request.
-         What you are about to enter is what is called a Distinguished Name or a DN.
-         There are quite a few fields but you can leave some blank
-         For some fields there will be a default value,
-         If you enter '.', the field will be left blank.
-         -----
-         Country Name (2 letter code) [AU]:US
-         State or Province Name (full name) [Some-State]:
-         ...
-         Email Address []:
-         Enter PEM pass phrase:
+        -----
+         [i] SSL Certificate Created:
+         [i] HTTPS Server Started: https://127.0.0.1:443
+        ----------------------------------------
+
+# Help
+    optional arguments:
+      -h, --help            show this help message and exit
+
+    Server options:
+      -s Default [127.0.0.1], --server Default [127.0.0.1]
+      -p [Default [443]], --port [Default [443]]
+
+    SSL Cert options:
+      -cn Default [US], --country Default [US]
+      -st Default [DEL], --state Default [DEL]
+      -c Default [DOVER], --city Default [DOVER]
+      -comp Default [Company Inc], --company Default [Company Inc]
+      -ou Default [IT], --orgUnit Default [IT]
+      -d Default [www.myserver.com], --fqdn Default [www.myserver.com]
+      -e Default [it@support.com], --email Default [it@support.com]
 
 
 

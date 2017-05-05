@@ -13,20 +13,16 @@
 
 
     Example:
-         SimpleHTTPS v1.05012017
-         Description: Quick and dirty HTTPS Python Server.
-         Created by: Nick Sanzotta/@Beamr
-         *******************************************************************************
-         openssl req -nodes -x509 -newkey rsa:2048 -keyout ../../key.pem -out ../../cert.pem -days 365 -subj                            "/C=US/ST=DEL/L=DOVER/O=Company Inc/OU=IT/CN=www.test.com/emailAddress=it@support.com"
-         
-         Generating a 2048 bit RSA private key
-         .......+++
-         ........................................+++
-         writing new private key to '../../key.pem'
-        -----
-         [i] SSL Certificate Created:
-         [i] HTTPS Server Started: https://127.0.0.1:443
-        ----------------------------------------
+             SimpleHTTPS v1.05052017
+             Description: Quick and dirty HTTPS Python Server.
+             Created by: Nick Sanzotta/@Beamr
+             *******************************************************************************
+             writing new private key to '../../key.pem'
+             -----
+             [*] SSL Certificate Created:
+             [i] HTTPS Server Started: https://127.0.0.1:443
+             [!] Press Enter to close
+             ----------------------------------------
 
 # Help
     optional arguments:

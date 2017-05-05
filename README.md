@@ -2,7 +2,7 @@
     Quick and dirty HTTPS Python Server.
 
 # Usage:
-     Most Basic Usage: python simplehttps.py (default server:127.0.0.1, port:443)
+     Basic Usage: python simplehttps.py (defaults server:127.0.0.1, port:443)
      
      Options:
      python simplehttps.py --server 127.0.0.1 --port 443
@@ -10,10 +10,7 @@
      python simplehttps.py --server 127.0.0.1 --port 443 -st NY -cNY -comp 'ABC Company' \ 
      -ou Dev -d www.myserver.com -e beamr@myserver.com
 
-
-     
      Note: HTTPS server runs in SimpleHTTPS/var/www/
-
 
     Example:
              SimpleHTTPS v1.05052017
